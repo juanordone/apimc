@@ -51,22 +51,22 @@ controller.getImage = async (req, res) => {
   }
 };
 
-controller.getProductById = async (req, res) => {
+controller.getRutaById = async (req, res) => {
   const  id = req.params.id;
 // Si no alguno de estos campos recibidos por el body devolvemos un 400 (bad request)
 if (!id)
   return res.status(400).send("Error al recibir el body");
 try {
-  let product = await dao.getProductById(id);
-  // Si no existe el usuario respondemos con un 404 (not found)
-  if (product.length <= 0) return res.status(404).send("producto no existe");
+  let rutas = await dao.getRutaById(id);
+  // Si no existe el ruta respondemos con un 404 (not found)
+  if (rutas.length <= 0) return res.status(404).send("producto no existe");
   
   
   // Como la consulta a la base de datos nos devuelve un array con el objeto del usuario usamos la desestructuración.
   // [product] = product;
   
   //Si todo es correcto enviamos la respuesta. 200 OK
-  return res.send( product[0] );
+  return res.send( rutas[0] );
 } catch (e) {
   console.log(e.message);
 }}

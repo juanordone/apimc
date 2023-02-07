@@ -22,7 +22,7 @@ dao.updateUser = async (id, userData) =>
 dao.addImage = async (imageData) => await productQueries.addImage(imageData);
 
 // Buscar producto por id
-dao.getProductById = async (id) => await productQueries.getProductById(id);
+dao.getRutaById = async (id) => await productQueries.getRutaById(id);
 
 // traer todos los productos
  dao.getAllProduct = async() => await productQueries.getAllProduct();

@@ -40,13 +40,13 @@ productQueries.getImageById = async (id) => {
   }
 };
 
-productQueries.getProductById = async (id) => {
+productQueries.getRutaById = async (id) => {
   // Conectamos con la base de datos y buscamos si existe el producto por la ref.
   let conn = null;
   try {
     conn = await db.createConnection();
     return await db.query(
-      "SELECT * FROM producto WHERE id = ?",
+      "SELECT * FROM rutas WHERE id = ?",
       id,
       "select",
       conn
