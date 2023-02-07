@@ -1,9 +1,9 @@
 import db from "../mysql.js";
 import moment from "moment/moment.js";
 
-const productQueries = {};
+const rutasQueries = {};
 
-productQueries.addImage = async (imageData) => {
+rutasQueries.addImage = async (imageData) => {
   // Conectamos con la base de datos y añadimos el usuario.
   let conn = null;
   try {
@@ -22,7 +22,7 @@ productQueries.addImage = async (imageData) => {
   }
 };
 
-productQueries.getImageById = async (id) => {
+rutasQueries.getImageById = async (id) => {
   // Conectamos con la base de datos y buscamos si existe la imagen por el id.
   let conn = null;
   try {
@@ -40,7 +40,7 @@ productQueries.getImageById = async (id) => {
   }
 };
 
-productQueries.getRutaById = async (id) => {
+rutasQueries.getRutasById = async (id) => {
   // Conectamos con la base de datos y buscamos si existe el producto por la ref.
   let conn = null;
   try {
@@ -58,7 +58,7 @@ productQueries.getRutaById = async (id) => {
   }
 };
 
-productQueries.getAllProduct = async () => {
+rutasQueries.getAllProduct = async () => {
    // Conectamos con la base de datos y buscamos si existe el producto por la ref.
    let conn = null;
    try {
@@ -77,7 +77,7 @@ productQueries.getAllProduct = async () => {
    }
 }
 
-productQueries.getProductByName = async (name) => {
+rutasQueries.getProductByName = async (name) => {
   // Conectamos con la base de datos y buscamos si existe el producto por la ref.
 // name = name.replace(/["']/g, "");
   let conn = null;
@@ -96,4 +96,4 @@ productQueries.getProductByName = async (name) => {
   }
 };
 
-export default productQueries;
+export default rutasQueries;

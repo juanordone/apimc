@@ -7,7 +7,7 @@ import { fileURLToPath } from "url";
 import { dirname } from "path";
 
 import userRouter from "./routes/user_routes.js";
-import productRouter from "./routes/product_routes.js";
+import productRouter from "./routes/rutas_routes.js";
 
 // Añadimos el método config de dotenv para utilizar las variables de entorno
 dotenv.config();

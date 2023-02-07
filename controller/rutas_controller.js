@@ -51,13 +51,13 @@ controller.getImage = async (req, res) => {
   }
 };
 
-controller.getRutaById = async (req, res) => {
+controller.getRutasById = async (req, res) => {
   const  id = req.params.id;
 // Si no alguno de estos campos recibidos por el body devolvemos un 400 (bad request)
 if (!id)
   return res.status(400).send("Error al recibir el body");
 try {
-  let rutas = await dao.getRutaById(id);
+  let rutas = await dao.getRutasById(id);
   // Si no existe el ruta respondemos con un 404 (not found)
   if (rutas.length <= 0) return res.status(404).send("producto no existe");
   

@@ -1,5 +1,5 @@
 import userQueries from "./mysql_queries/user_queries.js";
-import productQueries from "./mysql_queries/product_queris.js";
+import rutasQueries from "./mysql_queries/rutas_queris.js";
 
 const dao = {};
 
@@ -19,14 +19,14 @@ dao.updateUser = async (id, userData) =>
   await userQueries.updateUser(id, userData);
 
 // Añadir datos de la imagen subida al servidor
-dao.addImage = async (imageData) => await productQueries.addImage(imageData);
+dao.addImage = async (imageData) => await rutasQueries.addImage(imageData);
 
-// Buscar producto por id
-dao.getRutaById = async (id) => await productQueries.getRutaById(id);
+// Buscar rutas por id
+dao.getRutasById = async (id) => await rutasQueries.getRutasById(id);
 
 // traer todos los productos
- dao.getAllProduct = async() => await productQueries.getAllProduct();
+ dao.getAllProduct = async() => await rutasQueries.getAllProduct();
 
- dao.getProductByName = async (name) => await productQueries.getProductByName(name);
+ dao.getProductByName = async (name) => await rutasQueries.getProductByName(name);
 
 export default dao;
