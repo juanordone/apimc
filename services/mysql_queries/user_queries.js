@@ -34,10 +34,15 @@ userQueries.addUser = async (userData) => {
       apellidos: userData.apellidos,
       email: userData.email,
       contraseña: md5(userData.contraseña),
-      apodo: userData.apodo
+      apodo: userData.apodo,
       //reg_date: moment().format("YYYY-MM-DD HH:mm:ss"),
     };
-    return await db.query("INSERT INTO usuarios SET ?", userObj, "insert", conn);
+    return await db.query(
+      "INSERT INTO usuarios SET ?",
+      userObj,
+      "insert",
+      conn
+    );
   } catch (e) {
     throw new Error(e);
   } finally {
@@ -70,7 +75,7 @@ userQueries.getUserbyId = async (id) => {
   try {
     conn = await db.createConnection();
     return await db.query(
-      "SELECT * FROM usuario WHERE id = ?",
+      "SELECT * FROM usuarios WHERE id = ?",
       id,
       "select",
       conn
@@ -103,7 +108,7 @@ userQueries.updateUser = async (id, userData) => {
     userObj = await utils.removeUndefinedKeys(userObj);
 
     return await db.query(
-      "UPDATE users SET ? WHERE id = ?",
+      "UPDATE usuarios SET ? WHERE id = ?",
       [userObj, id],
       "insert",
       conn
