@@ -77,7 +77,7 @@ controller.getImage = async (req, res) => {
     return res.status(400).send(e.message);
   }
 };
-
+// controlador que trae la ruta por la id
 controller.getRutasById = async (req, res) => {
   const id = req.params.id;
   // Si no alguno de estos campos recibidos por el body devolvemos un 400 (bad request)
@@ -96,7 +96,7 @@ controller.getRutasById = async (req, res) => {
     console.log(e.message);
   }
 };
-
+// controlador que trae todas las rutas
 controller.allRutas = async (req, res) => {
   try {
     let product = await dao.getAllRutas();
