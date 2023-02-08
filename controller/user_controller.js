@@ -3,7 +3,7 @@ import { SignJWT, jwtVerify } from "jose";
 import md5 from "md5";
 
 const controller = {};
-
+// controlador para añadir usuario
 controller.addUser = async (req, res) => {
   const { nombre, email, contraseña } = req.body;
   // Si no alguno de estos campos recibidos por el body devolvemos un 400 (bad request)
