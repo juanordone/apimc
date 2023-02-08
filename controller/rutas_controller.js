@@ -2,7 +2,7 @@ import { currentDir } from "../index.js";
 import dao from "../services/dao.js";
 const controller = {};
 
-
+// malaga
 // Definimos la constante __dirname donde obtendremos la ruta absoluta
 const __dirname = currentDir().__dirname;
 // controlador para subir una o varias imágenes a nuestro servidor y base de datos
