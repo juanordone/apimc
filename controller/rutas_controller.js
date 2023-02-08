@@ -8,9 +8,10 @@ const __dirname = currentDir().__dirname;
 // controlador para subir una imagen a nuestro servidor y guardar el path en la base de datos.
 
 controller.addRutas = async (req, res) => {
-  const { ciudad,distancia,nivel,velocidad,tipo,duracion,fecha } = req.body;
+  const { ciudad,distancia,nivel,velocidad,tipo,duracion,fecha,id } = req.body;
+  
   // Si no alguno de estos campos recibidos por el body devolvemos un 400 (bad request)
-  if (!ciudad || !distancia || !nivel || !velocidad || !tipo || !duracion || !fecha)
+  if (!ciudad || !distancia || !nivel || !velocidad || !tipo || !duracion || !fecha || !id)
     return res.status(400).send("Error al recibir el body");
   // Buscamos el usuario en la base de datos
   try {
