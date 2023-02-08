@@ -1,18 +1,21 @@
 import express from "express";
 import rutasController from "../controller/rutas_controller.js";
 
-const productRouter = express.Router();
+const rutasRouter = express.Router();
 
 // Subir una o varias imágenes al servidor y base de datos
-productRouter.post("/upload", rutasController.uploadImage);
+rutasRouter.post("/upload", rutasController.uploadImage);
 // Obtener una imagen por su id
-productRouter.get("/image/:id", rutasController.getImage);
+rutasRouter.get("/image/:id", rutasController.getImage);
 // Buscar producto por su id
-productRouter.get("/ruta/:id", rutasController.getRutasById);
+rutasRouter.get("/ruta/:id", rutasController.getRutasById);
 // traemos los productos
-productRouter.get("/", rutasController.allRutas)
+// rutasRouter.get("/", rutasController.allRutas);
 
-productRouter.get("/productName/:name", rutasController.getRutasByName)
+// rutasRouter.get("/productName/:name", rutasController.getRutasByName)
+
+// subir una ruta
+rutasRouter.post("/addRutas", rutasController.addRutas)
 
 
-export default productRouter;
+export default rutasRouter;

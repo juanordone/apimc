@@ -6,6 +6,23 @@ const controller = {};
 const __dirname = currentDir().__dirname;
 // controlador para subir una o varias imágenes a nuestro servidor y base de datos
 // controlador para subir una imagen a nuestro servidor y guardar el path en la base de datos.
+
+controller.addRutas = async (req, res) => {
+  const { ciudad,distancia,nivel,velocidad,tipo,duracion,fecha } = req.body;
+  // Si no alguno de estos campos recibidos por el body devolvemos un 400 (bad request)
+  if (!ciudad || !distancia || !nivel || !velocidad || !tipo || !duracion || !fecha)
+    return res.status(400).send("Error al recibir el body");
+  // Buscamos el usuario en la base de datos
+  try {
+    
+    const addRutas = await dao.addRutas(req.body);
+    if (addRutas)
+      return res.send(`ruta ${ciudad} con id: ${addRutas} registrada`);
+  } catch (e) {
+    console.log(e.message);
+  }
+};
+
 controller.uploadImage = async (req, res) => {
   try {
     // Controlamos cuando el objeto files sea null

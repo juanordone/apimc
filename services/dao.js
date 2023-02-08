@@ -7,6 +7,8 @@ const dao = {};
 dao.getUserbyEmail = async (email) => await userQueries.getUserbyEmail(email);
 // Añadir un nuevo usuario
 dao.addUser = async (userData) => await userQueries.addUser(userData);
+// Añadir una nueva ruta
+dao.addRutas = async(rutasData) => await rutasQueries.addRutas(rutasData);
 
 // Buscar un usuario por el id
 dao.getUserbyId = async (id) => await userQueries.getUserbyId(id);
