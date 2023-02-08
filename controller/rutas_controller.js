@@ -1,7 +1,7 @@
 import { currentDir } from "../index.js";
 import dao from "../services/dao.js";
 const controller = {};
-//amigo mio 
+
 
 // Definimos la constante __dirname donde obtendremos la ruta absoluta
 const __dirname = currentDir().__dirname;
