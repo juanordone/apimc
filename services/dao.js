@@ -8,7 +8,7 @@ dao.getUserbyEmail = async (email) => await userQueries.getUserbyEmail(email);
 // Añadir un nuevo usuario
 dao.addUser = async (userData) => await userQueries.addUser(userData);
 // Añadir una nueva ruta
-dao.addRutas = async(rutasData) => await rutasQueries.addRutas(rutasData);
+dao.addRutas = async (rutasData) => await rutasQueries.addRutas(rutasData);
 
 // Buscar un usuario por el id
 dao.getUserbyId = async (id) => await userQueries.getUserbyId(id);
@@ -26,9 +26,9 @@ dao.addImage = async (imageData) => await rutasQueries.addImage(imageData);
 // Buscar rutas por id
 dao.getRutasById = async (id) => await rutasQueries.getRutasById(id);
 
-// traer todos los productos
- dao.getAllProduct = async() => await rutasQueries.getAllProduct();
-
- dao.getProductByName = async (name) => await rutasQueries.getProductByName(name);
+// traer todos las rutas
+dao.getAllRutas = async () => await rutasQueries.getAllRutas();
+// traer rutas por el nombre para el buscador
+dao.getRutasByName = async (name) => await rutasQueries.getRutasByName(name);
 
 export default dao;

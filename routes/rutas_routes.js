@@ -7,15 +7,14 @@ const rutasRouter = express.Router();
 rutasRouter.post("/upload", rutasController.uploadImage);
 // Obtener una imagen por su id
 rutasRouter.get("/image/:id", rutasController.getImage);
-// Buscar producto por su id
+// Buscar ruta por su id
 rutasRouter.get("/ruta/:id", rutasController.getRutasById);
-// traemos los productos
-// rutasRouter.get("/", rutasController.allRutas);
-
-// rutasRouter.get("/productName/:name", rutasController.getRutasByName)
+// traemos todas las rutas
+rutasRouter.get("/", rutasController.allRutas);
+// traemos las rutas por el nombre para el buscador
+rutasRouter.get("/RutasName/:name", rutasController.getRutasByName);
 
 // subir una ruta
-rutasRouter.post("/addRutas", rutasController.addRutas)
-
+rutasRouter.post("/addRutas", rutasController.addRutas);
 
 export default rutasRouter;

@@ -8,14 +8,23 @@ const __dirname = currentDir().__dirname;
 // controlador para subir una imagen a nuestro servidor y guardar el path en la base de datos.
 
 controller.addRutas = async (req, res) => {
-  const { ciudad,distancia,nivel,velocidad,tipo,duracion,fecha,id } = req.body;
-  
+  const { ciudad, distancia, nivel, velocidad, tipo, duracion, fecha, id } =
+    req.body;
+
   // Si no alguno de estos campos recibidos por el body devolvemos un 400 (bad request)
-  if (!ciudad || !distancia || !nivel || !velocidad || !tipo || !duracion || !fecha || !id)
+  if (
+    !ciudad ||
+    !distancia ||
+    !nivel ||
+    !velocidad ||
+    !tipo ||
+    !duracion ||
+    !fecha ||
+    !id
+  )
     return res.status(400).send("Error al recibir el body");
   // Buscamos el usuario en la base de datos
   try {
-    
     const addRutas = await dao.addRutas(req.body);
     if (addRutas)
       return res.send(`ruta ${ciudad} con id: ${addRutas} registrada`);
@@ -70,59 +79,53 @@ controller.getImage = async (req, res) => {
 };
 
 controller.getRutasById = async (req, res) => {
-  const  id = req.params.id;
-// Si no alguno de estos campos recibidos por el body devolvemos un 400 (bad request)
-if (!id)
-  return res.status(400).send("Error al recibir el body");
-try {
-  let rutas = await dao.getRutasById(id);
-  // Si no existe el ruta respondemos con un 404 (not found)
-  if (rutas.length <= 0) return res.status(404).send("producto no existe");
-  
-  
-  // Como la consulta a la base de datos nos devuelve un array con el objeto del usuario usamos la desestructuración.
-  // [product] = product;
-  
-  //Si todo es correcto enviamos la respuesta. 200 OK
-  return res.send( rutas[0] );
-} catch (e) {
-  console.log(e.message);
-}}
+  const id = req.params.id;
+  // Si no alguno de estos campos recibidos por el body devolvemos un 400 (bad request)
+  if (!id) return res.status(400).send("Error al recibir el body");
+  try {
+    let rutas = await dao.getRutasById(id);
+    // Si no existe el ruta respondemos con un 404 (not found)
+    if (rutas.length <= 0) return res.status(404).send("producto no existe");
 
-controller.allProduct = async (req,res) => {
-try {
-  let product = await dao.getAllProduct();
-  // Si no existe el usuario respondemos con un 404 (not found)
-  if (product.length <= 0) return res.status(404).send("No hay producto");
-  
-  
- 
-  
-  //Si todo es correcto enviamos la respuesta. 200 OK
-  return res.send( product );
-} catch (e) {
-  console.log(e.message);
-}
+    // Como la consulta a la base de datos nos devuelve un array con el objeto del usuario usamos la desestructuración.
+    // [product] = product;
 
-}
+    //Si todo es correcto enviamos la respuesta. 200 OK
+    return res.send(rutas[0]);
+  } catch (e) {
+    console.log(e.message);
+  }
+};
 
-controller.getProductByName = async (req, res) => {
-  const  name = req.params.name;
-// Si no alguno de estos campos recibidos por el body devolvemos un 400 (bad request)
-if (!name)
-  return res.status(400).send("Error al recibir el body");
-try {
-  let product = await dao.getProductByName(name);
-  // Si no existe el usuario respondemos con un 404 (not found)
-  if (product.length <= 0) return res.status(404).send("producto no existe");
-  
-  
-  // Como la consulta a la base de datos nos devuelve un array con el objeto del usuario usamos la desestructuración.
-  // [product] = product;
-  
-  //Si todo es correcto enviamos la respuesta. 200 OK
-  return res.send( product );
-} catch (e) {
-  console.log(e.message);
-}}
+controller.allRutas = async (req, res) => {
+  try {
+    let product = await dao.getAllRutas();
+    // Si no existe la ruta  respondemos con un 404 (not found)
+    if (product.length <= 0) return res.status(404).send("No hay producto");
+
+    //Si todo es correcto enviamos la respuesta. 200 OK
+    return res.send(product);
+  } catch (e) {
+    console.log(e.message);
+  }
+};
+// controlador para traer la rutas por su nombre para el buscador
+controller.getRutasByName = async (req, res) => {
+  const name = req.params.name;
+  // Si no alguno de estos campos recibidos por el body devolvemos un 400 (bad request)
+  if (!name) return res.status(400).send("Error al recibir el body");
+  try {
+    let ruta = await dao.getRutasByName(name);
+    // Si no existe el usuario respondemos con un 404 (not found)
+    if (product.ruta <= 0) return res.status(404).send("la ruta no existe");
+
+    // Como la consulta a la base de datos nos devuelve un array con el objeto del usuario usamos la desestructuración.
+    // [product] = product;
+
+    //Si todo es correcto enviamos la respuesta. 200 OK
+    return res.send(ruta);
+  } catch (e) {
+    console.log(e.message);
+  }
+};
 export default controller;

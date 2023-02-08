@@ -58,33 +58,33 @@ rutasQueries.getRutasById = async (id) => {
   }
 };
 
-rutasQueries.getAllProduct = async () => {
-   // Conectamos con la base de datos y buscamos si existe el producto por la ref.
-   let conn = null;
-   try {
-     conn = await db.createConnection();
-     return await db.query(
-       "SELECT * FROM producto ",
-       [],
-       
-       "select",
-       conn
-     );
-   } catch (e) {
-     throw new Error(e);
-   } finally {
-     conn && (await conn.end());
-   }
-}
-
-rutasQueries.getProductByName = async (name) => {
+rutasQueries.getAllRutas = async () => {
   // Conectamos con la base de datos y buscamos si existe el producto por la ref.
-// name = name.replace(/["']/g, "");
   let conn = null;
   try {
     conn = await db.createConnection();
     return await db.query(
-      `SELECT * FROM producto WHERE nombre  LIKE '%${name}%'`,
+      "SELECT * FROM rutas ",
+      [],
+
+      "select",
+      conn
+    );
+  } catch (e) {
+    throw new Error(e);
+  } finally {
+    conn && (await conn.end());
+  }
+};
+
+rutasQueries.getRutasByName = async (name) => {
+  // Conectamos con la base de datos y buscamos si existe el producto por la ref.
+  // name = name.replace(/["']/g, "");
+  let conn = null;
+  try {
+    conn = await db.createConnection();
+    return await db.query(
+      `SELECT * FROM rutas WHERE nombre  LIKE '%${name}%'`,
       name,
       "select",
       conn
@@ -102,16 +102,16 @@ rutasQueries.addRutas = async (rutasData) => {
   try {
     conn = await db.createConnection();
     // Creamos un objeto con los datos del usuario a guardar en la base de datos.
-    
+
     let rutasObj = {
       ciudad: rutasData.ciudad,
-      distancia : rutasData.distancia,
+      distancia: rutasData.distancia,
       nivel: rutasData.nivel,
       velocidad: rutasData.velocidad,
       tipo: rutasData.tipo,
       duracion: rutasData.duracion,
       fecha: rutasData.fecha,
-      idusuario: rutasData.id
+      idusuario: rutasData.id,
       //reg_date: moment().format("YYYY-MM-DD HH:mm:ss"),
     };
     return await db.query("INSERT INTO rutas SET ?", rutasObj, "insert", conn);
