@@ -2,14 +2,14 @@ import { currentDir } from "../index.js";
 import dao from "../services/dao.js";
 const controller = {};
 
-// malaga
+
 // Definimos la constante __dirname donde obtendremos la ruta absoluta
 const __dirname = currentDir().__dirname;
 // controlador para subir una o varias imágenes a nuestro servidor y base de datos
 // controlador para subir una imagen a nuestro servidor y guardar el path en la base de datos.
 
 controller.addRutas = async (req, res) => {
-  const { ciudad, distancia, nivel, velocidad, tipo, duracion, fecha, id } =
+  const { ciudad, distancia, nivel, velocidad, tipo, duracion, fecha, id, detalles} =
     req.body;
 
   // Si no alguno de estos campos recibidos por el body devolvemos un 400 (bad request)
@@ -21,7 +21,8 @@ controller.addRutas = async (req, res) => {
     !tipo ||
     !duracion ||
     !fecha ||
-    !id
+    !id ||
+    !detalles
   )
     return res.status(400).send("Error al recibir el body");
   // Buscamos el usuario en la base de datos

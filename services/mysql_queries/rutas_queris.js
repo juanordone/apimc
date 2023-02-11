@@ -112,6 +112,7 @@ rutasQueries.addRutas = async (rutasData) => {
       duracion: rutasData.duracion,
       fecha: rutasData.fecha,
       idusuario: rutasData.id,
+      detalles: rutasData.detalles
       //reg_date: moment().format("YYYY-MM-DD HH:mm:ss"),
     };
     return await db.query("INSERT INTO rutas SET ?", rutasObj, "insert", conn);
