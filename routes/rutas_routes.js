@@ -15,6 +15,6 @@ rutasRouter.get("/", rutasController.allRutas);
 rutasRouter.get("/RutasName/:name", rutasController.getRutasByName);
 
 // subir una ruta
-rutasRouter.post("/addRutas", rutasController.addRutas);
+rutasRouter.post("/addRutas/:id", rutasController.addRutas);
 
 export default rutasRouter;

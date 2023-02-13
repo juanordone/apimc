@@ -103,19 +103,8 @@ rutasQueries.addRutas = async (rutasData) => {
     conn = await db.createConnection();
     // Creamos un objeto con los datos del usuario a guardar en la base de datos.
 
-    let rutasObj = {
-      ciudad: rutasData.ciudad,
-      distancia: rutasData.distancia,
-      nivel: rutasData.nivel,
-      velocidad: rutasData.velocidad,
-      tipo: rutasData.tipo,
-      duracion: rutasData.duracion,
-      fecha: rutasData.fecha,
-      idusuario: rutasData.id,
-      detalles: rutasData.detalles
-      //reg_date: moment().format("YYYY-MM-DD HH:mm:ss"),
-    };
-    return await db.query("INSERT INTO rutas SET ?", rutasObj, "insert", conn);
+   
+    return await db.query("INSERT INTO rutas SET ?", rutasData, "insert", conn);
   } catch (e) {
     throw new Error(e);
   } finally {

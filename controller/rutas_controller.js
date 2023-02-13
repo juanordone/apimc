@@ -8,6 +8,7 @@ const __dirname = currentDir().__dirname;
 // controlador para subir una imagen a nuestro servidor y guardar el path en la base de datos.
 
 controller.addRutas = async (req, res) => {
+  const {id} = req.params
   const {
     ciudad,
     distancia,
@@ -16,6 +17,7 @@ controller.addRutas = async (req, res) => {
     tipo,
     duracion,
     fecha,
+    url,
     detalles,
   } = req.body;
 
@@ -28,12 +30,14 @@ controller.addRutas = async (req, res) => {
     !tipo ||
     !duracion ||
     !fecha ||
-    !detalles
+    !detalles ||
+    !url
   )
     return res.status(400).send("Error al recibir el body");
   // Buscamos el usuario en la base de datos
   try {
-    const addRutas = await dao.addRutas(req.body);
+   const  rutasobj = {ciudad : ciudad, distancia: distancia, nivel: nivel, velocidad: velocidad, tipo:tipo , duracion:duracion, fecha: fecha, url:url, detalles:detalles, idusuario:id}
+    const addRutas = await dao.addRutas(rutasobj);
     if (addRutas)
       return res.send(`ruta ${ciudad} con id: ${addRutas} registrada`);
   } catch (e) {
