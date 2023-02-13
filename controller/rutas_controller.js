@@ -113,7 +113,7 @@ controller.allRutas = async (req, res) => {
   try {
     let product = await dao.getAllRutas();
     // Si no existe la ruta  respondemos con un 404 (not found)
-    if (product.length <= 0) return res.status(404).send("No hay producto");
+    if (product.length <= 0) return res.status(404).send("No hay rutas");
 
     //Si todo es correcto enviamos la respuesta. 200 OK
     return res.send(product);
