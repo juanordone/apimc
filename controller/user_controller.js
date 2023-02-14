@@ -99,9 +99,7 @@ controller.deleteUser = async (req, res) => {
 
 // Controlador para modificar un usuario por su id
 controller.updateUser = async (req, res) => {
-  const { authorization } = req.headers;
-  // Si no existe el token enviamos un 401 (unauthorized)
-  if (!authorization) return res.sendStatus(401);
+ 
 
   try {
     // Si no nos llega ningún campo por el body devolvemos un 400 (bad request)
