@@ -84,7 +84,7 @@ rutasQueries.getRutasByName = async (name) => {
   try {
     conn = await db.createConnection();
     return await db.query(
-      `SELECT * FROM rutas WHERE nombre  LIKE '%${name}%'`,
+      `SELECT * FROM rutas WHERE ciudad  LIKE '%${name}%'`,
       name,
       "select",
       conn

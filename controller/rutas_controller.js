@@ -129,7 +129,7 @@ controller.getRutasByName = async (req, res) => {
   try {
     let ruta = await dao.getRutasByName(name);
     // Si no existe el usuario respondemos con un 404 (not found)
-    if (product.ruta <= 0) return res.status(404).send("la ruta no existe");
+    if (ruta.length <= 0) return res.status(404).send("la ruta no existe");
 
     // Como la consulta a la base de datos nos devuelve un array con el objeto del usuario usamos la desestructuración.
     // [product] = product;
