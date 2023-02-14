@@ -112,4 +112,22 @@ rutasQueries.addRutas = async (rutasData) => {
   }
 };
 
+rutasQueries.getRutasByIdUsuario = async (idusuario) => {
+  // Conectamos con la base de datos y buscamos si existe el producto por la ref.
+  let conn = null;
+  try {
+    conn = await db.createConnection();
+    return await db.query(
+      "SELECT * FROM rutas WHERE idusuario = ?",
+      idusuario,
+      "select",
+      conn
+    );
+  } catch (e) {
+    throw new Error(e);
+  } finally {
+    conn && (await conn.end());
+  }
+};
+
 export default rutasQueries;

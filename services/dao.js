@@ -25,6 +25,8 @@ dao.addImage = async (imageData) => await rutasQueries.addImage(imageData);
 
 // Buscar rutas por id
 dao.getRutasById = async (id) => await rutasQueries.getRutasById(id);
+// Buscar rutas por idusuario
+dao.getRutasByIdUsuario = async (idusuario) => await rutasQueries.getRutasByIdUsuario(idusuario);
 
 // traer todos las rutas
 dao.getAllRutas = async () => await rutasQueries.getAllRutas();
