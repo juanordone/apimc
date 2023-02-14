@@ -69,7 +69,7 @@ userQueries.deleteUser = async (id) => {
   }
 };
 
-userQueries.getUserbyId = async (id) => {
+userQueries.getUserById = async (id) => {
   // Conectamos con la base de datos y buscamos si existe el usuario por el email.
   let conn = null;
   try {

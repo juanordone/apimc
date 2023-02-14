@@ -8,5 +8,6 @@ userRouter.post("/login", userController.loginUser);
 userRouter.delete("/:id", userController.deleteUser);
 // Modificar un usuario por su id
 userRouter.patch("/:id", userController.updateUser);
+userRouter.get("/user/:id", userController.getUserById)
 
 export default userRouter;
