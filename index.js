@@ -8,6 +8,7 @@ import { dirname } from "path";
 
 import userRouter from "./routes/user_routes.js";
 import rutasRouter from "./routes/rutas_routes.js";
+import ComentariosRouter from "./routes/comentarios_routes.js";
 
 // Añadimos el método config de dotenv para utilizar las variables de entorno
 dotenv.config();
@@ -30,5 +31,6 @@ app.use(logger("dev"));
 app.use(cookieParser());
 app.use("/user", userRouter);
 app.use("/rutas",rutasRouter);
+app.use("/comentario", ComentariosRouter)
 
 export default app;

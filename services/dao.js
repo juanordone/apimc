@@ -1,5 +1,6 @@
 import userQueries from "./mysql_queries/user_queries.js";
 import rutasQueries from "./mysql_queries/rutas_queris.js";
+import comentariosQueries from "./mysql_queries/comentarios_queris.js";
 
 const dao = {};
 
@@ -33,4 +34,8 @@ dao.getAllRutas = async () => await rutasQueries.getAllRutas();
 // traer rutas por el nombre para el buscador
 dao.getRutasByName = async (name) => await rutasQueries.getRutasByName(name);
 
+// añadir un comentario
+dao.addComentario = async (comentariosData) => await comentariosQueries.addComentario(comentariosData);
+
+dao.getComentarioByIdRuta = async (idruta) => await comentariosQueries.getComentarioByIdRuta(idruta)
 export default dao;
