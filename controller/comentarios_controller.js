@@ -4,10 +4,11 @@ import dao from "../services/dao.js";
 const controller = {};
 
 controller.addComentario = async (req, res) => {
-    const {id} = req.params
+    const {idusuario,idruta} = req.params
     const {
-     comentario,idusuario
+     comentario,
     } = req.body;
+    console.log(req.body)
   
     // Si no alguno de estos campos recibidos por el body devolvemos un 400 (bad request)
     if (
@@ -16,7 +17,7 @@ controller.addComentario = async (req, res) => {
       return res.status(400).send("Error al recibir el body");
     // Buscamos el usuario en la base de datos
     try {
-     const  comentarioobj = { comentario: comentario, idusuario:idusuario, idruta:id}
+     const  comentarioobj = { comentario: comentario, idusuario:idusuario, idruta:idruta}
       const addComentarios = await dao.addComentario(comentarioobj);
       if (addComentarios)
         return res.send(`comentario con id: ${addComentarios} registrado`);
