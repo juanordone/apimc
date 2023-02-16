@@ -28,7 +28,7 @@ comentariosQueries.getComentarioByIdRuta = async (idruta) => {
   try {
     conn = await db.createConnection();
     return await db.query(
-      "SELECT  comentarios.comentario, usuarios.apodo, usuarios.imagen FROM comentarios join usuarios on comentarios.idusuario = usuarios.id   WHERE idruta = ?",
+      "SELECT  comentarios.comentario, usuarios.apodo, usuarios.imagen , comentarios.id FROM comentarios join usuarios on comentarios.idusuario = usuarios.id   WHERE idruta = ?",
       idruta,
       "select",
       conn
