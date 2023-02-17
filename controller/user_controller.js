@@ -151,7 +151,7 @@ controller.updateImage = async (req, res) => {
     images.forEach(async (image) => {
       // Ya podemos acceder a las propiedades del objeto image.
       // Obtenemos la ruta de la imagen.
-      let uploadPath = __dirname + "/public/" + image.name;
+      let uploadPath = __dirname + "/public/images/products/" + image.name;
       let uploadRelPath = "/images/products/" + image.name;
       // Usamos el método mv() para ubicar el archivo en nuestro servidor
       image.mv(uploadPath, (err) => {
