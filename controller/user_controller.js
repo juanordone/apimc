@@ -3,8 +3,6 @@ import { SignJWT, jwtVerify } from "jose";
 import md5 from "md5";
 import { currentDir } from "../index.js";
 
-
-
 const controller = {};
 const __dirname = currentDir().__dirname;
 // controlador para añadir usuario
@@ -103,8 +101,6 @@ controller.deleteUser = async (req, res) => {
 
 // Controlador para modificar un usuario por su id
 controller.updateUser = async (req, res) => {
- 
-
   try {
     // Si no nos llega ningún campo por el body devolvemos un 400 (bad request)
     if (Object.entries(req.body).length === 0)
@@ -138,39 +134,38 @@ controller.getUserById = async (req, res) => {
 };
 
 controller.updateImage = async (req, res) => {
-  const { authorization } = req.headers;
-
-  if (!authorization) return res.sendStatus(401);
-
+  const { id } = req.params;
   try {
+    // Controlamos cuando el objeto files sea null
     if (req.files === null) return;
-
+    // Controlamos si nos viene algún tipo de archivo en el objeto files
     if (!req.files || Object.keys(req.files).length === 0) {
-      return res.status(400).send("No se ha cargado ningun archivo");
+      return res.status(400).send("No se ha cargado ningún archivo8558");
     }
-
-    if (!req.query) {
-      return res.status(400).send("No se ha indicado el id del usuario");
-    }
-
+    // 1 archivo [{}] , >1 archivo [[{},{},...]]
+    // Obtenemos un array de objetos con todas las imagenes
     const images = !req.files.imagen.length
       ? [req.files.imagen]
       : req.files.imagen;
+    // Recorremos el array para procesar cada imagen
     images.forEach(async (image) => {
-      let uploadPath = __dirname + "/public/images/usuarios/" + image.name;
-      let BBDDPath = "images/usuarios/" + image.name;
+      // Ya podemos acceder a las propiedades del objeto image.
+      // Obtenemos la ruta de la imagen.
+      let uploadPath = __dirname + "/public/" + image.name;
+      let uploadRelPath = "/images/products/" + image.name;
+      // Usamos el método mv() para ubicar el archivo en nuestro servidor
       image.mv(uploadPath, (err) => {
         if (err) return res.status(500).send(err);
       });
-
-      await dao.updateImage(req.params.id, {
-        img: BBDDPath,
+      await dao.updateImage(id, {
+        path: uploadRelPath,
+        producto: req.query.producto,
       });
     });
-
-    return res.send(`Usuario con id ${req.params.id} actualizado`);
+    return res.send("Imagen subida!");
   } catch (e) {
     console.log(e.message);
+    return res.status(400).send(e.message);
   }
 };
 

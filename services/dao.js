@@ -22,12 +22,14 @@ dao.updateUser = async (id, userData) =>
   await userQueries.updateUser(id, userData);
 
 // Añadir datos de la imagen subida al servidor
-dao.updateImage = async (id,imageData) => updateImage(id,imageData)
+dao.updateImage = async (id, imageData) =>
+  await userQueries.updateImage(id, imageData);
 
 // Buscar rutas por id
 dao.getRutasById = async (id) => await rutasQueries.getRutasById(id);
 // Buscar rutas por idusuario
-dao.getRutasByIdUsuario = async (idusuario) => await rutasQueries.getRutasByIdUsuario(idusuario);
+dao.getRutasByIdUsuario = async (idusuario) =>
+  await rutasQueries.getRutasByIdUsuario(idusuario);
 
 // traer todos las rutas
 dao.getAllRutas = async () => await rutasQueries.getAllRutas();
@@ -35,7 +37,9 @@ dao.getAllRutas = async () => await rutasQueries.getAllRutas();
 dao.getRutasByName = async (name) => await rutasQueries.getRutasByName(name);
 
 // añadir un comentario
-dao.addComentario = async (comentariosData) => await comentariosQueries.addComentario(comentariosData);
+dao.addComentario = async (comentariosData) =>
+  await comentariosQueries.addComentario(comentariosData);
 
-dao.getComentarioByIdRuta = async (idruta) => await comentariosQueries.getComentarioByIdRuta(idruta)
+dao.getComentarioByIdRuta = async (idruta) =>
+  await comentariosQueries.getComentarioByIdRuta(idruta);
 export default dao;

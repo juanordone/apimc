@@ -127,8 +127,7 @@ userQueries.updateImage = async (id, imageData) => {
     conn = await db.createConnection();
 
     let userObj = {
-      img: imageData.img,
-      path: imageData.path,
+      imagen: imageData.path,
     };
     return await db.query(
       "Update usuarios SET ? WHERE id = ?",
