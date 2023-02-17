@@ -1,8 +1,12 @@
 import dao from "../services/dao.js";
 import { SignJWT, jwtVerify } from "jose";
 import md5 from "md5";
+import { currentDir } from "../index.js";
+
+
 
 const controller = {};
+const __dirname = currentDir().__dirname;
 // controlador para añadir usuario
 controller.addUser = async (req, res) => {
   const { nombre, email, contraseña } = req.body;
@@ -128,6 +132,43 @@ controller.getUserById = async (req, res) => {
 
     //Si todo es correcto enviamos la respuesta. 200 OK
     return res.send(user[0]);
+  } catch (e) {
+    console.log(e.message);
+  }
+};
+
+controller.updateImage = async (req, res) => {
+  const { authorization } = req.headers;
+
+  if (!authorization) return res.sendStatus(401);
+
+  try {
+    if (req.files === null) return;
+
+    if (!req.files || Object.keys(req.files).length === 0) {
+      return res.status(400).send("No se ha cargado ningun archivo");
+    }
+
+    if (!req.query) {
+      return res.status(400).send("No se ha indicado el id del usuario");
+    }
+
+    const images = !req.files.imagen.length
+      ? [req.files.imagen]
+      : req.files.imagen;
+    images.forEach(async (image) => {
+      let uploadPath = __dirname + "/public/images/usuarios/" + image.name;
+      let BBDDPath = "images/usuarios/" + image.name;
+      image.mv(uploadPath, (err) => {
+        if (err) return res.status(500).send(err);
+      });
+
+      await dao.updateImage(req.params.id, {
+        img: BBDDPath,
+      });
+    });
+
+    return res.send(`Usuario con id ${req.params.id} actualizado`);
   } catch (e) {
     console.log(e.message);
   }

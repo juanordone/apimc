@@ -22,7 +22,7 @@ dao.updateUser = async (id, userData) =>
   await userQueries.updateUser(id, userData);
 
 // Añadir datos de la imagen subida al servidor
-dao.addImage = async (imageData) => await rutasQueries.addImage(imageData);
+dao.updateImage = async (id,imageData) => updateImage(id,imageData)
 
 // Buscar rutas por id
 dao.getRutasById = async (id) => await rutasQueries.getRutasById(id);

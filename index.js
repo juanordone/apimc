@@ -19,6 +19,7 @@ export function currentDir() {
     const __dirname = dirname(__filename);
     return { __dirname, __filename };
   }
+  const {__dirname} =currentDir()
 
 // instanciamos express
 const app = express();

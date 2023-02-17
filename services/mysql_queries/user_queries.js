@@ -1,7 +1,7 @@
 import db from "../mysql.js";
 import moment from "moment/moment.js";
 import md5 from "md5";
-import utils from "../../utils/utils.js"
+import utils from "../../utils/utils.js";
 
 const userQueries = {};
 
@@ -112,6 +112,28 @@ userQueries.updateUser = async (id, userData) => {
       "UPDATE usuarios SET ? WHERE id = ?",
       [userObj, id],
       "insert",
+      conn
+    );
+  } catch (e) {
+    throw new Error(e);
+  } finally {
+    conn && (await conn.end());
+  }
+};
+
+userQueries.updateImage = async (id, imageData) => {
+  let conn = null;
+  try {
+    conn = await db.createConnection();
+
+    let userObj = {
+      img: imageData.img,
+      path: imageData.path,
+    };
+    return await db.query(
+      "Update usuarios SET ? WHERE id = ?",
+      [userObj, id],
+      "update",
       conn
     );
   } catch (e) {

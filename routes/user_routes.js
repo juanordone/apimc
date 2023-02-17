@@ -10,4 +10,6 @@ userRouter.delete("/:id", userController.deleteUser);
 userRouter.patch("/:id", userController.updateUser);
 userRouter.get("/user/:id", userController.getUserById)
 
+// Subir una o varias imágenes al servidor y base de datos
+userRouter.patch("/imagen/:id", userController.updateImage)
 export default userRouter;
