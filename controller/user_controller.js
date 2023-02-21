@@ -135,6 +135,7 @@ controller.getUserById = async (req, res) => {
 
 controller.updateImage = async (req, res) => {
   const { id } = req.params;
+  console.log(req.files)
   try {
     // Controlamos cuando el objeto files sea null
     if (req.files === null) return;
@@ -144,9 +145,10 @@ controller.updateImage = async (req, res) => {
     }
     // 1 archivo [{}] , >1 archivo [[{},{},...]]
     // Obtenemos un array de objetos con todas las imagenes
-    const images = !req.files.imagen.length
-      ? [req.files.imagen]
-      : req.files.imagen;
+    const images = !req.files.length
+      ? [req.files.file]
+      : req.files.file;
+      console.log(images,"esto es imagenes")
     // Recorremos el array para procesar cada imagen
     images.forEach(async (image) => {
       // Ya podemos acceder a las propiedades del objeto image.
