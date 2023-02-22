@@ -180,11 +180,11 @@ controller.addUserToRuta = async (req, res) => {
     [getUser] = getUser;
     if (addUserToRuta)
       await transporter.sendMail({
-        from: '"Bienvenido a proyeto" <meetcyclist@gmail.com>', // sender address
+        from: '"Bienvenido a la ruta" <meetcyclist@gmail.com>', // sender address
         to: `${getUser.email}`, // list of receivers
-        subject: "Hello ✔", // Subject line
+        subject: "Meet Cyclist ✔", // Subject line
         // text: "Hello world?", // plain text body
-        html: "<b>Bienvenido a Canteen design,espero disfrutes de nuestros productos para cualquier consulta contactanos, gracias por registrarte!! Enlace de la web: http://127.0.0.1:5173/login</b>", // html body
+        html: "<b>Bienvenido a la ruta,esperamos que disfrutes de tu salida, recuerda respestar las normas de circulacion y disfrutar de la bicicleta. Para mas informacion aqui tienes el enlace de la web: http://127.0.0.1:5173/login</b>", // html body
       });
 
     return res.send(`usuario con id: ${idusuario} unido`);
