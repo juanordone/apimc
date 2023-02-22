@@ -14,5 +14,5 @@ userRouter.get("/user/:id", userController.getUserById);
 userRouter.post("/imagen/:id", userController.updateImage);
 
 // unirse un usuario a una ruta
-userRouter.post("/addUserRuta/:idruta", userController.addUserToRuta);
+userRouter.post("/addUserRuta/:idruta/:idusuario", userController.addUserToRuta);
 export default userRouter;

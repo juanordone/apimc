@@ -173,8 +173,8 @@ controller.updateImage = async (req, res) => {
 
 
 controller.addUserToRuta = async(req,res) => {
-  const {idruta} = req.params
-  const {idusuario} = req.body
+  const {idruta,idusuario} = req.params
+  
  
 
  
