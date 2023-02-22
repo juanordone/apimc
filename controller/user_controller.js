@@ -2,6 +2,7 @@ import dao from "../services/dao.js";
 import { SignJWT, jwtVerify } from "jose";
 import md5 from "md5";
 import { currentDir } from "../index.js";
+import { transporter } from "../config/mailer.js";
 
 const controller = {};
 const __dirname = currentDir().__dirname;
@@ -135,7 +136,7 @@ controller.getUserById = async (req, res) => {
 
 controller.updateImage = async (req, res) => {
   const { id } = req.params;
-  console.log(req.files)
+  console.log(req.files);
   try {
     // Controlamos cuando el objeto files sea null
     if (req.files === null) return;
@@ -145,10 +146,8 @@ controller.updateImage = async (req, res) => {
     }
     // 1 archivo [{}] , >1 archivo [[{},{},...]]
     // Obtenemos un array de objetos con todas las imagenes
-    const images = !req.files.length
-      ? [req.files.file]
-      : req.files.file;
-      console.log(images,"esto es imagenes")
+    const images = !req.files.length ? [req.files.file] : req.files.file;
+    console.log(images, "esto es imagenes");
     // Recorremos el array para procesar cada imagen
     images.forEach(async (image) => {
       // Ya podemos acceder a las propiedades del objeto image.
@@ -171,18 +170,24 @@ controller.updateImage = async (req, res) => {
   }
 };
 
+controller.addUserToRuta = async (req, res) => {
+  const { idruta, idusuario } = req.params;
 
-controller.addUserToRuta = async(req,res) => {
-  const {idruta,idusuario} = req.params
-  
- 
-
- 
   try {
-   const  userrutaobj = { idusuario:idusuario, idruta:idruta}
-    const addUserToRuta = await dao.addUserToRuta(userrutaobj);
+    const userrutaobj = { idusuario: idusuario, idruta: idruta };
+    let addUserToRuta = await dao.addUserToRuta(userrutaobj);
+    let getUser = await dao.getUserById(idusuario);
+    [getUser] = getUser;
     if (addUserToRuta)
-      return res.send(`usuario con id: ${idusuario} unido`);
+      await transporter.sendMail({
+        from: '"Bienvenido a proyeto" <meetcyclist@gmail.com>', // sender address
+        to: `${getUser.email}`, // list of receivers
+        subject: "Hello ✔", // Subject line
+        // text: "Hello world?", // plain text body
+        html: "<b>Bienvenido a Canteen design,espero disfrutes de nuestros productos para cualquier consulta contactanos, gracias por registrarte!! Enlace de la web: http://127.0.0.1:5173/login</b>", // html body
+      });
+
+    return res.send(`usuario con id: ${idusuario} unido`);
   } catch (e) {
     console.log(e.message);
   }
