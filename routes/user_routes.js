@@ -12,4 +12,7 @@ userRouter.get("/user/:id", userController.getUserById);
 
 // Subir una o varias imágenes al servidor y base de datos
 userRouter.post("/imagen/:id", userController.updateImage);
+
+// unirse un usuario a una ruta
+userRouter.post("/addUserRuta/:idruta", userController.addUserToRuta);
 export default userRouter;

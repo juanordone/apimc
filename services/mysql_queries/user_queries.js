@@ -142,4 +142,23 @@ userQueries.updateImage = async (id, imageData) => {
   }
 };
 
+userQueries.addUserToRuta = async (grupetaData) => {
+  let conn = null;
+  try {
+    conn = await db.createConnection();
+    // Creamos un objeto con los datos del usuario a guardar en la base de datos.
+
+    return await db.query(
+      "INSERT INTO grupeta SET ?",
+      grupetaData,
+      "insert",
+      conn
+    );
+  } catch (e) {
+    throw new Error(e);
+  } finally {
+    conn && (await conn.end());
+  }
+}
+
 export default userQueries;

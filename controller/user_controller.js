@@ -171,4 +171,20 @@ controller.updateImage = async (req, res) => {
   }
 };
 
+
+controller.addUserToRuta = async(req,res) => {
+  const {idruta} = req.params
+  const {idusuario} = req.body
+ 
+
+ 
+  try {
+   const  userrutaobj = { idusuario:idusuario, idruta:idruta}
+    const addUserToRuta = await dao.addUserToRuta(userrutaobj);
+    if (addUserToRuta)
+      return res.send(`usuario con id: ${idusuario} unido`);
+  } catch (e) {
+    console.log(e.message);
+  }
+};
 export default controller;
