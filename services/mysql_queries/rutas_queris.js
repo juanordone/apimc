@@ -1,27 +1,11 @@
 import db from "../mysql.js";
-import moment from "moment/moment.js";
+
 
 const rutasQueries = {};
 
 
 
-// rutasQueries.getImageById = async (id) => {
-//   // Conectamos con la base de datos y buscamos si existe la imagen por el id.
-//   let conn = null;
-//   try {
-//     conn = await db.createConnection();
-//     return await db.query(
-//       "SELECT * FROM images WHERE id = ?",
-//       id,
-//       "select",
-//       conn
-//     );
-//   } catch (e) {
-//     throw new Error(e);
-//   } finally {
-//     conn && (await conn.end());
-//   }
-// };
+
 
 rutasQueries.getRutasById = async (id) => {
   // Conectamos con la base de datos y buscamos si existe el producto por la ref.
