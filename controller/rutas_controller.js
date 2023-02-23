@@ -131,4 +131,24 @@ controller.getRutasByIdUsuario = async (req, res) => {
     console.log(e.message);
   }
 };
+controller.getGrupetaByIdRuta = async(req,res) => {
+  const idruta = req.params.idruta;
+// Si no alguno de estos campos recibidos por el body devolvemos un 400 (bad request)
+if (!idruta) return res.status(400).send("Error al recibir el body");
+try {
+  let grupeta = await dao.getGrupetaByIdruta(idruta);
+  // Si no existe el ruta respondemos con un 404 (not found)
+  if (grupeta.length <= 0) return res.status(404).send("Usuario no existe");
+
+  // Como la consulta a la base de datos nos devuelve un array con el objeto del usuario usamos la desestructuración.
+  // [product] = product;
+
+  //Si todo es correcto enviamos la respuesta. 200 OK
+  return res.send(grupeta);
+} catch (e) {
+  console.log(e.message);
+}
+} 
+
+
 export default controller;

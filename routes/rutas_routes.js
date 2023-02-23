@@ -20,4 +20,6 @@ rutasRouter.post("/addRutas/:id", rutasController.addRutas);
 // Buscar ruta por la idusuario
 rutasRouter.get("/rutaUsuario/:idusuario", rutasController.getRutasByIdUsuario);
 
+rutasRouter.get("/grupeta/:idruta", rutasController.getGrupetaByIdRuta );
+
 export default rutasRouter;

@@ -43,6 +43,10 @@ dao.addComentario = async (comentariosData) =>
 dao.getComentarioByIdRuta = async (idruta) =>
   await comentariosQueries.getComentarioByIdRuta(idruta);
 
-  dao.addUserToRuta = async (grupetaData) =>
+dao.addUserToRuta = async (grupetaData) =>
   await userQueries.addUserToRuta(grupetaData);
+
+dao.getGrupetaByIdruta = async (idruta) =>
+  await rutasQueries.getGrupetaByIdRuta(idruta);
+
 export default dao;
