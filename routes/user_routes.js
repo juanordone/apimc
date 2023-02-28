@@ -5,7 +5,7 @@ const userRouter = express.Router();
 
 userRouter.post("/", userController.addUser);
 userRouter.post("/login", userController.loginUser);
-userRouter.delete("/:id", userController.deleteUser);
+userRouter.delete("/:idruta/:idusuario", userController.deleteUserToRuta);
 // Modificar un usuario por su id
 userRouter.patch("/:id", userController.updateUser);
 userRouter.get("/user/:id", userController.getUserById);

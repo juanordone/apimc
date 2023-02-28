@@ -69,32 +69,20 @@ controller.loginUser = async (req, res) => {
 };
 
 // Controlador para eliminar un usuario por su id
-controller.deleteUser = async (req, res) => {
-  // OBTENER CABECERA Y COMPROBAR SU AUTENTICIDAD Y CADUCIDAD
-  const { authorization } = req.headers;
-  // Si no existe el token enviamos un 401 (unauthorized)
-  if (!authorization) return res.sendStatus(401);
-  const token = authorization.split(" ")[1];
+controller.deleteUserToRuta = async (req, res) => {
+  const { idruta,idusuario } = req.params;
+  
 
   try {
-    // codificamos la clave secreta
-    const encoder = new TextEncoder();
-    // verificamos el token con la función jwtVerify. Le pasamos el token y la clave secreta codificada
-    const { payload } = await jwtVerify(
-      token,
-      encoder.encode(process.env.JWT_SECRET)
-    );
-    // Verificamos que seamos usuario administrador
-    if (!payload.role)
-      return res.status(409).send("no tiene permiso de administrador");
-    // Buscamos si el id del usuario existe en la base de datos
-    const user = await dao.getUserbyId(req.params.id);
+    
+   
+   
     // Si no existe devolvemos un 404 (not found)
-    if (user.length <= 0) return res.status(404).send("el usuario no existe");
+    
     // Si existe, eliminamos el usuario por el id
-    await dao.deleteUser(req.params.id);
+    await dao.deleteUserToRuta(idruta,idusuario);
     // Devolvemos la respuesta
-    return res.send(`Usuario con id ${req.params.id} eliminado`);
+    return res.send(`Usuario con id ${idusuario} eliminado`);
   } catch (e) {
     console.log(e.message);
   }

@@ -46,21 +46,7 @@ controller.addRutas = async (req, res) => {
 };
 
 
-// Controlador para obtener una imagen por su id
-// controller.getImage = async (req, res) => {
-//   try {
-//     // Buscamos si el id de la imagen existe en la base de datos
-//     const image = await dao.getImageById(req.params.id);
-//     // Si no existe devolvemos un 404 (not found)
-//     if (image.length <= 0) return res.status(404).send("La imagen no existe");
-//     // Devolvemos la ruta donde se encuentra la imagen
-//     return res.send({ path: image[0].path });
-//   } catch (e) {
-//     console.log(e.message);
-//     return res.status(400).send(e.message);
-//   }
-// };
-// controlador que trae la ruta por la id
+
 controller.getRutasById = async (req, res) => {
   const id = req.params.id;
   // Si no alguno de estos campos recibidos por el body devolvemos un 400 (bad request)

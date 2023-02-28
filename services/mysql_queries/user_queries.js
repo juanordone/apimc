@@ -51,15 +51,15 @@ userQueries.addUser = async (userData) => {
   }
 };
 
-// Borrar un usuario por su id
-userQueries.deleteUser = async (id) => {
+
+userQueries.deleteUserToRuta = async (idruta,idusuario) => {
   // Conectamos con la base de datos y eliminamos el usuario por su id.
   let conn = null;
   try {
     conn = await db.createConnection();
     return await db.query(
-      "DELETE FROM usuarios WHERE id = ?",
-      id,
+      "DELETE  FROM grupeta WHERE idruta = ? and idusuario = ?",
+      [idruta,idusuario],
       "delete",
       conn
     );

@@ -15,7 +15,7 @@ dao.addRutas = async (rutasData) => await rutasQueries.addRutas(rutasData);
 dao.getUserById = async (id) => await userQueries.getUserById(id);
 
 // Eliminar un usuario
-dao.deleteUser = async (id) => await userQueries.deleteUser(id);
+dao.deleteUserToRuta = async (idruta,idusuario) => await userQueries.deleteUserToRuta(idruta,idusuario);
 
 // Modificar usuario por su id
 dao.updateUser = async (id, userData) =>
