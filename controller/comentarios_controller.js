@@ -19,8 +19,10 @@ controller.addComentario = async (req, res) => {
     try {
      const  comentarioobj = { comentario: comentario, idusuario:idusuario, idruta:idruta}
       const addComentarios = await dao.addComentario(comentarioobj);
-      if (addComentarios)
-        return res.send(`comentario con id: ${addComentarios} registrado`);
+      if (addComentarios){let comentarios = await dao.getComentarioByIdRuta(idruta)
+        return res.send(comentarios);}
+      
+        
     } catch (e) {
       console.log(e.message);
     }
