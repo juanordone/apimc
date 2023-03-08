@@ -82,7 +82,8 @@ controller.deleteUserToRuta = async (req, res) => {
     // Si existe, eliminamos el usuario por el id
     await dao.deleteUserToRuta(idruta,idusuario);
     // Devolvemos la respuesta
-    return res.send(`Usuario con id ${idusuario} eliminado`);
+    let grupeta = await dao.getGrupetaByIdruta(idruta)
+    return res.send(grupeta);
   } catch (e) {
     console.log(e.message);
   }
