@@ -70,19 +70,15 @@ controller.loginUser = async (req, res) => {
 
 // Controlador para eliminar un usuario por su id
 controller.deleteUserToRuta = async (req, res) => {
-  const { idruta,idusuario } = req.params;
-  
+  const { idruta, idusuario } = req.params;
 
   try {
-    
-   
-   
     // Si no existe devolvemos un 404 (not found)
-    
+
     // Si existe, eliminamos el usuario por el id
-    await dao.deleteUserToRuta(idruta,idusuario);
+    await dao.deleteUserToRuta(idruta, idusuario);
     // Devolvemos la respuesta
-    let grupeta = await dao.getGrupetaByIdruta(idruta)
+    let grupeta = await dao.getGrupetaByIdruta(idruta);
     return res.send(grupeta);
   } catch (e) {
     console.log(e.message);
@@ -98,7 +94,9 @@ controller.updateUser = async (req, res) => {
     // Actualizamos el usuario
     await dao.updateUser(req.params.id, req.body);
     // Devolvemos la respuesta
-    return res.send(`Usuario con id ${req.params.id} modificado`);
+    let user = await dao.getUserById(req.params.id);
+    console.log(user, "esto es user");
+    return res.send(user);
   } catch (e) {
     console.log(e.message);
   }
@@ -175,7 +173,7 @@ controller.addUserToRuta = async (req, res) => {
         // text: "Hello world?", // plain text body
         html: "<b>Te has unido a la ruta,esperamos que disfrutes de tu salida, recuerda respestar las normas de circulacion y disfrutar de la bicicleta. Para mas informacion aqui tienes el enlace de la web: http://127.0.0.1:5173/login</b>", // html body
       });
-      let grupeta = await dao.getGrupetaByIdruta(idruta)
+    let grupeta = await dao.getGrupetaByIdruta(idruta);
     return res.send(grupeta);
   } catch (e) {
     console.log(e.message);
