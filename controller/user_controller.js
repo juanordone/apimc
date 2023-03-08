@@ -174,8 +174,8 @@ controller.addUserToRuta = async (req, res) => {
         // text: "Hello world?", // plain text body
         html: "<b>Te has unido a la ruta,esperamos que disfrutes de tu salida, recuerda respestar las normas de circulacion y disfrutar de la bicicleta. Para mas informacion aqui tienes el enlace de la web: http://127.0.0.1:5173/login</b>", // html body
       });
-
-    return res.send(`usuario con id: ${idusuario} unido`);
+      let grupeta = await dao.getGrupetaByIdruta(idruta)
+    return res.send(grupeta);
   } catch (e) {
     console.log(e.message);
   }
